@@ -99,6 +99,27 @@ service-config file.</con:comment>
     </con:pipeline>
     <con:pipeline type="response" name="PipelinePairNode2_response"/>
     <con:pipeline type="request" name="PipelinePairNode3_request">
+      <con:stage name="RequestStage1">
+        <con:context>
+          <con1:varNsDecl namespace="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1" prefix="man"/>
+        </con:context>
+        <con:actions>
+          <con1:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-5796318166369397059-6318b9f4.1669b44b2e2.-7f40</con5:id>
+            <con1:location>
+              <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="ManageDigitalAccountDetails_2_0/transformations/WSDL_ConstructAccountDetailsRequest"/>
+                <con5:param name="createAccount_1">
+                  <con5:path>$body/man:createAccount_1</con5:path>
+                </con5:param>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
       <con:stage name="CallBE2">
         <con:context/>
         <con:actions>
@@ -134,192 +155,6 @@ service-config file.</con:comment>
             <con2:responseTransform>
               <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
                 <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7c83</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$Responsebody</con5:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:responseTransform>
-          </con2:wsCallout>
-        </con:actions>
-      </con:stage>
-      <con:stage name="RequestStage1">
-        <con:context>
-          <con1:varNsDecl namespace="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1" prefix="man"/>
-        </con:context>
-        <con:actions>
-          <con1:replace varName="body" contents-only="true" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7d33</con5:id>
-            <con1:location>
-              <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
-            </con1:location>
-            <con1:expr>
-              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
-                <con5:resource ref="ManageDigitalAccountDetails_2_0/transformations/WSDL_ConstructAccountDetailsRequest"/>
-                <con5:param name="createAccount_1">
-                  <con5:path>$body/man:createAccount_1</con5:path>
-                </con5:param>
-              </con5:xqueryTransform>
-            </con1:expr>
-          </con1:replace>
-        </con:actions>
-      </con:stage>
-      <con:stage name="stage1">
-        <con:context/>
-        <con:actions>
-          <con2:wsCallout>
-            <con1:id>_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7b62</con1:id>
-            <con2:service xsi:type="ref:BusinessServiceRef" ref="ManageDigitalAccountDetails_2_0/businessservices/Account" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-            <con2:request>
-              <con2:payload wrapped="true">$body</con2:payload>
-            </con2:request>
-            <con2:response>
-              <con2:payload wrapped="true">Responsebody</con2:payload>
-            </con2:response>
-            <con2:requestTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7b64</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logOutbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body</con2:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:requestTransform>
-            <con2:responseTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7b63</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$Responsebody</con5:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:responseTransform>
-          </con2:wsCallout>
-        </con:actions>
-      </con:stage>
-      <con:stage name="CallBE3">
-        <con:context/>
-        <con:actions>
-          <con2:wsCallout>
-            <con1:id>_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7c0d</con1:id>
-            <con2:service xsi:type="ref:BusinessServiceRef" ref="ManageDigitalAccountDetails_2_0/businessservices/Account" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-            <con2:request>
-              <con2:payload wrapped="true">$body</con2:payload>
-            </con2:request>
-            <con2:response>
-              <con2:payload wrapped="true">Responsebody</con2:payload>
-            </con2:response>
-            <con2:requestTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7c0f</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logOutbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body</con2:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:requestTransform>
-            <con2:responseTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7c0e</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$Responsebody</con5:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:responseTransform>
-          </con2:wsCallout>
-        </con:actions>
-      </con:stage>
-      <con:stage name="CallBE1">
-        <con:context/>
-        <con:actions>
-          <con2:wsCallout>
-            <con1:id>_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7cbe</con1:id>
-            <con2:service xsi:type="ref:BusinessServiceRef" ref="ManageDigitalAccountDetails_2_0/businessservices/Account" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
-            <con2:request>
-              <con2:payload wrapped="true">$body</con2:payload>
-            </con2:request>
-            <con2:response>
-              <con2:payload wrapped="true">Responsebody</con2:payload>
-            </con2:response>
-            <con2:requestTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7cc0</con5:id>
-                <con1:archive ref="Utility/o2framework/o2framework"/>
-                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
-                <con1:method>public static void logOutbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$inbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$outbound</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$header</con2:xqueryText>
-                </con1:expr>
-                <con1:expr>
-                  <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body</con2:xqueryText>
-                </con1:expr>
-              </con1:javaCallout>
-            </con2:requestTransform>
-            <con2:responseTransform>
-              <con1:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
-                <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1447002247601848631-6ccc069d.1669a468c54.-7cbf</con5:id>
                 <con1:archive ref="Utility/o2framework/o2framework"/>
                 <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
                 <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
