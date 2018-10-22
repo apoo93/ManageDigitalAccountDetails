@@ -1,0 +1,57 @@
+<!-- 
+	Date 		Version 	Author 			Change-Description
+	30/01/2017 	1.0.1 		Devender 		Updated the xsd to introduce new fields attachmentName, attachmentData, attachmentSize to handle attachments as part of ECB project.
+	21/12/2015 	1.0.0 		Devender 		Initial	version 
+--><xsd:schema targetNamespace="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mtd="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1" xmlns:xcore="http://soa.o2.co.uk/coredata_1">
+	<xsd:import namespace="http://soa.o2.co.uk/coredata_1" schemaLocation="coredata_1_1.xsd"/>
+	<xsd:element name="createAccount_1" type="mtd:createAccount_1">
+		<xsd:annotation>
+			<xsd:documentation>
+				Request for createAccount_1 operation
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="createAccount_1Response" type="mtd:createAccount_1Response">
+		<xsd:annotation>
+			<xsd:documentation>
+				Response for createAccount_1 operation
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="createAccount_1Fault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Element for createAccount_1 fault
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="createAccount_1">
+		<xsd:annotation>
+			<xsd:documentation>
+				createAccount_1 type
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			
+			<xsd:element name="AccountNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="BranchName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="createAccount_1Response">
+		<xsd:annotation>
+			<xsd:documentation>
+				createAccount_1Response type
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Balance" type="xsd:string" maxOccurs="1" minOccurs="0">
+			</xsd:element>
+			<xsd:element name="LastTransactionDetails" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>

@@ -1,0 +1,49 @@
+<!-- 
+    Date			Version		Author  		Change-Description 
+    21/12/2015		1.0.0		Devender		Initial version
+--><wsdl:definitions name="ManageDigitalAccountDetails" targetNamespace="http://soa.o2.co.uk/managedigitalaccountdetailsservice_1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mts="http://soa.o2.co.uk/managedigitalaccountdetailsservice_1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mtd="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://soa.o2.co.uk/managedigitalaccountdetailsdata_1" schemaLocation="managedigitalaccountdetailsdata_1_0.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="createAccount_1">
+		<wsdl:part name="createAccount_1" element="mtd:createAccount_1"/>
+	</wsdl:message>
+	<wsdl:message name="createAccount_1Response">
+		<wsdl:part name="createAccount_1Response" element="mtd:createAccount_1Response"/>
+	</wsdl:message>
+	<wsdl:message name="createAccount_1Fault">
+		<wsdl:part name="createAccount_1Fault" element="mtd:createAccount_1Fault"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="ManageDigitalAccountDetailsPort">
+		<wsdl:operation name="createAccount_1">
+			<wsdl:input name="createAccount_1" message="mts:createAccount_1"/>
+			<wsdl:output name="createAccount_1Response" message="mts:createAccount_1Response"/>
+			<wsdl:fault name="createAccount_1Fault" message="mts:createAccount_1Fault"/>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+	<wsdl:binding name="ManageDigitalAccountDetailsBinding" type="mts:ManageDigitalAccountDetailsPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="createAccount_1">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="createAccount_1">
+				<soap:body parts="createAccount_1" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="createAccount_1Response">
+				<soap:body parts="createAccount_1Response" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="createAccount_1Fault">
+				<soap:fault name="createAccount_1Fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	</wsdl:binding>
+	<wsdl:service name="ManageDigitalAccountDetailsService">
+		<wsdl:port name="ManageDigitalAccountDetailsPortTypePort" binding="mts:ManageDigitalAccountDetailsBinding">
+			<soap:address location="https://sdpapi.o2.co.uk/services/ManageDigitalAccountDetails_1_0"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
