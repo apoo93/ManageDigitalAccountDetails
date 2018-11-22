@@ -17,7 +17,7 @@
            <!--
                     THIS URL REPRESENTS THE ACTUAL URL FOR AN ENVIRONMENT (Applied to the ALSB Business Service)
             -->
-          <tran:URI>https://www.google.co.in</tran:URI>
+          <tran:URI>http://172.30.64.98:8087/sim/GenericWSSimulatorServiceFactory/simconfig/CI</tran:URI>
           <tran:weight>0</tran:weight>
         </tran:tableElement>
       </xt:value>
