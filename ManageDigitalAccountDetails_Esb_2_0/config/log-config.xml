@@ -2,6 +2,7 @@
   <!--
 
 	logFlag is an Enumeration of HEADER_ONLY, HEADER_AND_PAYLOAD, NO_LOG
+	Test
  
 -->
 <lc:logConfig layer="ALSB" xmlns:lc="http://soa.o2.co.uk/config/LogConfig">	
@@ -11,6 +12,8 @@
 			
 	</lc:service>
 </lc:logConfig>
+
+
 
   
   
